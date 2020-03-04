@@ -646,6 +646,13 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
+"@types/aframe@^0.8.4":
+  version "0.8.4"
+  resolved "https://registry.yarnpkg.com/@types/aframe/-/aframe-0.8.4.tgz#1fa7a3cf5a6b1684efe5277a3a58cda5e41bede2"
+  dependencies:
+    "@types/tween.js" "*"
+    three "*"
+
 "@types/events@*":
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/@types/events/-/events-3.0.0.tgz#2862f3f58a9a7f7c3e78d79f130dd4d71c25c2a7"
@@ -665,6 +672,10 @@
 "@types/node@*":
   version "13.7.7"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-13.7.7.tgz#1628e6461ba8cc9b53196dfeaeec7b07fa6eea99"
+
+"@types/tween.js@*":
+  version "18.5.0"
+  resolved "https://registry.yarnpkg.com/@types/tween.js/-/tween.js-18.5.0.tgz#27d10aafa36c75c72953f00936663546b2a28441"
 
 "@webassemblyjs/ast@1.8.5":
   version "1.8.5"
@@ -817,6 +828,12 @@ acorn@^6.2.1:
   version "6.4.0"
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-6.4.0.tgz#b659d2ffbafa24baf5db1cdbb2c94a983ecd2784"
 
+aframe-state-component@^6.8.0:
+  version "6.8.0"
+  resolved "https://registry.yarnpkg.com/aframe-state-component/-/aframe-state-component-6.8.0.tgz#43a8a13d0ff150ac194e957475257ccce73246ff"
+  dependencies:
+    debug "^2.6.9"
+
 aframe-super-hot-html-loader@*:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/aframe-super-hot-html-loader/-/aframe-super-hot-html-loader-2.1.0.tgz#989bc825d32e5d386a513fa2886289ac34d26aff"
@@ -830,6 +847,10 @@ aframe-super-hot-loader@*:
   dependencies:
     loader-utils "^1.2.3"
     nunjucks "^3.1.7"
+
+aframe-text-geometry-component@^0.5.1:
+  version "0.5.1"
+  resolved "https://registry.yarnpkg.com/aframe-text-geometry-component/-/aframe-text-geometry-component-0.5.1.tgz#c5024e182aa96f548cd7fea6e53dd47b7f6f753a"
 
 ajv-errors@^1.0.0:
   version "1.0.1"
@@ -5090,6 +5111,10 @@ terser@^4.1.2:
     commander "^2.20.0"
     source-map "~0.6.1"
     source-map-support "~0.5.12"
+
+three@*:
+  version "0.114.0"
+  resolved "https://registry.yarnpkg.com/three/-/three-0.114.0.tgz#754d08467a950ddeef06a0c645a1302b130e455a"
 
 through2@^2.0.0:
   version "2.0.5"

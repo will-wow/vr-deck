@@ -24,13 +24,17 @@
     "shx": "^0.2.2",
     "style-loader": "^0.23.1",
     "url-loader": "^1.1.2",
+    "webpack": "^4.29.5",
     "webpack-cli": "3.2.3",
     "webpack-dev-server": "^3.2.0",
     "webpack-glsl-loader": "^1.0.1",
-    "webpack-sources": "1.0.1",
-    "webpack": "^4.29.5"
+    "webpack-sources": "1.0.1"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@types/aframe": "^0.8.4",
+    "aframe-state-component": "^6.8.0",
+    "aframe-text-geometry-component": "^0.5.1"
+  },
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack",
     "deploy": "",
