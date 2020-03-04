@@ -6,10 +6,36 @@
   "license": "MIT",
   "private": false,
   "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.3.3",
+    "@babel/preset-env": "^7.3.1",
+    "aframe-super-hot-html-loader": "*",
+    "aframe-super-hot-loader": "*",
+    "autoprefixer": "^7.2.3",
+    "babel-loader": "^8.0.5",
+    "babel-minify-webpack-plugin": "^0.3.1",
+    "cross-env": "4.0.0",
+    "css-loader": "^0.28.7",
+    "html-require-loader": "*",
+    "json-loader": "^0.5.7",
     "live-server": "^1.2.1",
-    "prettier": "^1.19.1"
+    "postcss-loader": "^2.0.9",
+    "prettier": "^1.19.1",
+    "shx": "^0.2.2",
+    "style-loader": "^0.23.1",
+    "url-loader": "^1.1.2",
+    "webpack-cli": "3.2.3",
+    "webpack-dev-server": "^3.2.0",
+    "webpack-glsl-loader": "^1.0.1",
+    "webpack-sources": "1.0.1",
+    "webpack": "^4.29.5"
   },
+  "dependencies": {},
   "scripts": {
-    "start": "live-server ./src"
+    "build": "cross-env NODE_ENV=production webpack",
+    "deploy": "",
+    "lint": "",
+    "format": "prettier --write ./**/*.{js,html,css,md,json}",
+    "start": "webpack-dev-server --host 0.0.0.0 --progress --colors --hot-only --inline --port 3000"
   }
 }
