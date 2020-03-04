@@ -1,15 +1,18 @@
+import deck from "./data/deck";
+const max = deck.slides.length - 1;
+
 AFRAME.registerState({
   initialState: {
-    slide: 0
+    slide: 1
   },
 
   handlers: {
     nextSlide: function(state, _action) {
-      state.slide += 1;
+      state.slide = Math.min(state.slide + 1, max);
     },
 
-    lastSlide: function(state, _action) {
-      state.slide -= 1;
+    prevSlide: function(state, _action) {
+      state.slide = Math.max(state.slide - 1, max);
     }
   }
 });

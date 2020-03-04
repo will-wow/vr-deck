@@ -1,7 +1,5 @@
 import deck from "../data/deck";
 
-console.log(deck);
-
 /**
  *
  */

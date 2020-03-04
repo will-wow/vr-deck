@@ -34,28 +34,38 @@
     radius="30"
   ></a-sky>
 
-  <a-entity slide>
-    <a-entity position="-1 2 -2" text-geometry="value: What's up"></a-entity>
-    <a-entity
-      position="-1 1 -2"
-      text-geometry="value: Dog?; font: #optimerBoldFont"
-    ></a-entity>
-  </a-entity>
+  <a-entity slide bind="slide.show: slide"></a-entity>
 
-  <a-entity mixin="voxel" position="-1 0 -2"></a-entity>
-  <a-entity mixin="voxel" position="0 0 -2"></a-entity>
-  <a-entity mixin="voxel" position="0 1 -2"></a-entity>
-  <a-entity mixin="voxel" position="1 0 -2"></a-entity>
+  <a-box
+    next-button="next: true"
+    size="0.5 0.5 0.5"
+    position="-1 1 -2"
+    height="0.25"
+    width="0.25"
+    depth="0.25"
+    color="black"
+  ></a-box>
+  <a-box
+    next-button="next: false"
+    position="1 1 -2"
+    height="0.25"
+    width="0.25"
+    depth="0.25"
+  ></a-box>
 
-  <a-entity id="teleHand" hand-controls="hand: left"></a-entity>
+  <a-entity
+    id="teleHand"
+    hand-controls="hand: left"
+    trigger-slide="action: prevSlide; event: pointup;"
+  ></a-entity>
   <a-entity
     id="blockHand"
     hand-controls="hand: right"
     laser-controls
-    intersection-spawn="event: click; mixin: voxel"
+    trigger-slide="action: nextSlide; event: pointup;"
   ></a-entity>
 
   <a-camera>
-    <a-cursor intersection-spawn="event: click; mixin: voxel"></a-cursor>
+    <a-cursor></a-cursor>
   </a-camera>
 </a-scene>
