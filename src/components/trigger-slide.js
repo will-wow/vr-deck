@@ -1,9 +1,9 @@
 /**
- * Trigger a slide change on click
+ * Trigger a an action from an event
  */
-AFRAME.registerComponent("trigger-slide", {
+AFRAME.registerComponent("trigger-action", {
   schema: {
-    action: { type: "string", default: "nextSlide" },
+    action: { type: "string" },
     event: { type: "string", default: "click" }
   },
 

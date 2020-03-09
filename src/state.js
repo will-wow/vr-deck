@@ -7,7 +7,8 @@ AFRAME.registerState({
     head: {},
     right: {},
     left: {},
-    highlightedLine: -1
+    highlightedLine: -1,
+    mirror: true
   },
 
   handlers: {
@@ -27,6 +28,18 @@ AFRAME.registerState({
     },
     highlight(state, { line }) {
       state.highlightedLine = line;
+    },
+    toggleMirror(state, _value) {
+      if (this.play) return;
+      state.mirror = !state.mirror;
+    },
+    togglePlay(state, _value) {
+      state.record = false;
+      state.play = !state.play;
+    },
+    toggleRecord(state, _value) {
+      state.play = false;
+      state.record = !state.record;
     }
   }
 });

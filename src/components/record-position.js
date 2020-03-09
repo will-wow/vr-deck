@@ -1,15 +1,23 @@
+import { updatePosition } from "../lib/update-position";
+
 AFRAME.registerComponent("record-position", {
   schema: {
-    target: { type: "selector" }
+    target: { type: "selector" },
+    mirror: { type: "boolean", default: true }
   },
 
-  tick(time, deltaTime) {
+  init() {
+    this.tick = AFRAME.utils.throttleTick(this.tick, 42, this);
+    this.id = this.data.target.getAttribute("id");
+  },
+
+  tick(timestamp, delta) {
     const { position, rotation } = this.el.object3D;
 
     const target = this.data.target;
 
-    target.object3D.position.set(position.x, position.y, position.z);
+    // updatePosition(target, position, rotation);
 
-    target.object3D.rotation.set(rotation.x, rotation.y, rotation.z);
+    this.el.emit("record", { timestamp, position, rotation, target });
   }
 });

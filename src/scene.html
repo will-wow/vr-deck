@@ -1,4 +1,4 @@
-<a-scene keyboard-slide>
+<a-scene keyboard-slide bind__recorder="play: play; record: record">
   <a-assets>
     <img
       id="groundTexture"
@@ -8,12 +8,19 @@
 
     <a-mixin id="slide__text" class="slide__text"></a-mixin>
 
+    <a-mixin
+      id="action-button"
+      class=".action-button"
+      geometry="height: 0.25; width: 0.25; depth: 0.25"
+    ></a-mixin>
+
     <a-asset-item
       id="optimerBoldFont"
       src="https://rawgit.com/mrdoob/three.js/dev/examples/fonts/optimer_bold.typeface.json"
     ></a-asset-item>
   </a-assets>
 
+  <!-- Background -->
   <a-cylinder
     id="ground"
     src="#groundTexture"
@@ -28,14 +35,39 @@
     radius="30"
   ></a-sky>
 
+  <!-- Controls -->
+  <a-entity position="0 0.2 0">
+    <a-box
+      mixin="action-button"
+      position="-1 0 -2"
+      color="blue"
+      trigger-action="action: toggleMirror"
+    ></a-box>
+    <a-box
+      mixin="action-button"
+      position="0 0 -2"
+      color="green"
+      trigger-action="action: togglePlay"
+    ></a-box>
+    <a-box
+      mixin="action-button"
+      position="1 0 -2"
+      color="red"
+      trigger-action="action: toggleRecord"
+    ></a-box>
+  </a-entity>
+
+  <!-- Primary Deck -->
   <a-entity position="3 2.5 1" rotation="0 180 0">
     <a-entity slide bind="slide.show: slide"></a-entity>
   </a-entity>
 
+  <!-- Mirrored Deck -->
   <a-entity position="-3 2.5 -5">
     <a-entity slide bind="slide.show: slide"></a-entity>
   </a-entity>
 
+  <!-- Mirrored Speaker -->
   <a-entity rotation="0 180 0" position="1 0 -4">
     <a-box
       id="speakerHead"
@@ -48,18 +80,19 @@
     <a-box id="speakerRight" height="0.1" width="0.1" depth="0.1"></a-box>
   </a-entity>
 
+  <!-- User -->
   <a-entity
     id="teleHand"
     hand-controls="hand: left"
-    trigger-slide="action: prevSlide; event: pointup;"
+    trigger-action="action: prevSlide; event: pointup;"
     record-position="target: #speakerLeft"
   ></a-entity>
 
   <a-entity
     id="blockHand"
     hand-controls="hand: right"
-    laser-controls="objects=.slide__text"
-    trigger-slide="action: nextSlide; event: pointup;"
+    laser-controls="objects=.slide__text,.action-button"
+    trigger-action="action: nextSlide; event: pointup;"
     record-position="target: #speakerRight"
   ></a-entity>
 
