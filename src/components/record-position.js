@@ -3,12 +3,7 @@ AFRAME.registerComponent("record-position", {
     target: { type: "selector" }
   },
 
-  init() {
-    this.scene = AFRAME.scenes[0];
-  },
-
   tick(time, deltaTime) {
-    if (!this.scene) return;
     const { position, rotation } = this.el.object3D;
 
     const target = this.data.target;

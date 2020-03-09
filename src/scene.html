@@ -1,4 +1,4 @@
-<a-scene>
+<a-scene keyboard-slide>
   <a-assets>
     <img
       id="groundTexture"
@@ -6,13 +6,7 @@
     />
     <img id="skyTexture" src="https://cdn.aframe.io/a-painter/images/sky.jpg" />
 
-    <a-mixin
-      id="voxel"
-      geometry="primitive: box; height: 0.5; width: 0.5; depth: 0.5"
-      material="shader: standard"
-      random-color
-      snap="offset: 0.25 0.25 0.25; snap: 0.5 0.5 0.5"
-    ></a-mixin>
+    <a-mixin id="slide__text" class="slide__text"></a-mixin>
 
     <a-asset-item
       id="optimerBoldFont"
@@ -34,27 +28,15 @@
     radius="30"
   ></a-sky>
 
-  <a-entity position="3 3 0">
+  <a-entity position="3 2.5 1" rotation="0 180 0">
     <a-entity slide bind="slide.show: slide"></a-entity>
   </a-entity>
 
-  <a-box
-    next-button="next: true"
-    position="-1 1 -2"
-    height="0.25"
-    width="0.25"
-    depth="0.25"
-    color="black"
-  ></a-box>
-  <a-box
-    next-button="next: false"
-    position="1 1 -2"
-    height="0.25"
-    width="0.25"
-    depth="0.25"
-  ></a-box>
+  <a-entity position="-3 2.5 -5">
+    <a-entity slide bind="slide.show: slide"></a-entity>
+  </a-entity>
 
-  <a-entity rotation="0 180 0" position="0 0 -4">
+  <a-entity rotation="0 180 0" position="1 0 -4">
     <a-box
       id="speakerHead"
       color="yellow"
@@ -62,8 +44,8 @@
       width="0.25"
       depth="0.25"
     ></a-box>
-    <a-box id="speakerLeft" height="0.25" width="0.25" depth="0.25"></a-box>
-    <a-box id="speakerRight" height="0.25" width="0.25" depth="0.25"></a-box>
+    <a-box id="speakerLeft" height="0.1" width="0.1" depth="0.1"></a-box>
+    <a-box id="speakerRight" height="0.1" width="0.1" depth="0.1"></a-box>
   </a-entity>
 
   <a-entity
@@ -76,7 +58,7 @@
   <a-entity
     id="blockHand"
     hand-controls="hand: right"
-    laser-controls
+    laser-controls="objects=.slide__text"
     trigger-slide="action: nextSlide; event: pointup;"
     record-position="target: #speakerRight"
   ></a-entity>

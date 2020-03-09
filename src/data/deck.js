@@ -2,20 +2,20 @@ export default {
   title: "My Deck",
   slides: [
     [
-      { component: "header", content: "Intro" },
+      { kind: "h1", content: "Intro" },
       {
-        component: "text",
+        kind: "h2",
         content: "This is a test"
       },
       {
-        component: "text",
+        kind: "p",
         content: "So is this"
       }
     ],
     [
-      { component: "header", content: "The end" },
+      { kind: "h1", content: "The end" },
       {
-        component: "text",
+        kind: "p",
         content: "Thanks!"
       }
     ]

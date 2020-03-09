@@ -11,9 +11,7 @@ AFRAME.registerComponent("trigger-slide", {
     const { action, event } = this.data;
     const el = this.el;
 
-    console.log({ event });
     el.addEventListener(event, _e => {
-      console.log({ action });
       AFRAME.scenes[0].emit(action);
     });
   }
