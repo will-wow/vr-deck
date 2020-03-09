@@ -94,7 +94,7 @@
   <a-entity
     id="teleHand"
     hand-controls="hand: left"
-    trigger-action="action: prevSlide; event: pointup;"
+    trigger-action="action: prevSlide; event: gripdown;"
     record-position="target: #speakerLeft"
   ></a-entity>
 
@@ -102,7 +102,7 @@
     id="blockHand"
     hand-controls="hand: right"
     laser-controls="objects=.slide__text,.action-button"
-    trigger-action="action: nextSlide; event: pointup;"
+    trigger-action="action: nextSlide; event: gripdown;"
     record-position="target: #speakerRight"
   ></a-entity>
 
