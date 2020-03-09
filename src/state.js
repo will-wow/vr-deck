@@ -3,7 +3,10 @@ const max = deck.slides.length - 1;
 
 AFRAME.registerState({
   initialState: {
-    slide: 1
+    slide: 1,
+    head: {},
+    right: {},
+    left: {}
   },
 
   handlers: {
@@ -13,6 +16,9 @@ AFRAME.registerState({
 
     prevSlide: function(state, _action) {
       state.slide = Math.max(state.slide - 1, max);
+    },
+    recordTick(state, { target, ...payload }) {
+      state[target] = payload;
     }
   }
 });

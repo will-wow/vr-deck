@@ -16,8 +16,7 @@ AFRAME.registerComponent("slide", {
     // Clear out slide
     this.el.innerHTML = "";
 
-    let y = 4;
-    let x = -2;
+    let y = 0;
 
     // Render new slide
     const slide = deck.slides[show];
@@ -27,7 +26,7 @@ AFRAME.registerComponent("slide", {
         value: element.content,
         font: "#optimerBoldFont"
       });
-      slideElement.setAttribute("position", `${x} ${y} -2`);
+      slideElement.setAttribute("position", `0 ${y} 0`);
 
       this.el.appendChild(slideElement);
 

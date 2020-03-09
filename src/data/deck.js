@@ -19,5 +19,6 @@ export default {
         content: "Thanks!"
       }
     ]
-  ]
+  ],
+  actions: []
 };

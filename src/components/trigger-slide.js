@@ -3,7 +3,7 @@
  */
 AFRAME.registerComponent("trigger-slide", {
   schema: {
-    action: { type: "string", default: "next" },
+    action: { type: "string", default: "nextSlide" },
     event: { type: "string", default: "click" }
   },
 
