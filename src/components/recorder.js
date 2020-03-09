@@ -25,7 +25,6 @@ AFRAME.registerComponent("recorder", {
     const { play, record } = this.data;
 
     if (oldData.record !== record) {
-      console.log("record", record);
       if (record) {
         this.startRecording();
       } else {
@@ -34,7 +33,6 @@ AFRAME.registerComponent("recorder", {
     }
 
     if (oldData.play !== play) {
-      console.log("play", play);
       if (play) {
         this.startPlayback();
       }

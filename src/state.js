@@ -8,7 +8,8 @@ AFRAME.registerState({
     right: {},
     left: {},
     highlightedLine: -1,
-    mirror: true
+    mirror: true,
+    audioRecording: null
   },
 
   handlers: {
@@ -40,6 +41,9 @@ AFRAME.registerState({
     toggleRecord(state, _value) {
       state.play = false;
       state.record = !state.record;
+    },
+    audioRecorded(state, { url }) {
+      state.audioRecording = `url(${url})`;
     }
   }
 });

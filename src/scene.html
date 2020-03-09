@@ -1,4 +1,8 @@
-<a-scene keyboard-slide bind__recorder="play: play; record: record">
+<a-scene
+  keyboard-slide
+  bind__recorder="play: play; record: record"
+  bind__voice-recorder="record: record"
+>
   <a-assets>
     <img
       id="groundTexture"
@@ -75,7 +79,13 @@
       height="0.25"
       width="0.25"
       depth="0.25"
-    ></a-box>
+    >
+      <a-sound
+        bind-toggle__src="audioRecording"
+        bind__src="audioRecording"
+        bind__voice-player="play: play"
+      ></a-sound>
+    </a-box>
     <a-box id="speakerLeft" height="0.1" width="0.1" depth="0.1"></a-box>
     <a-box id="speakerRight" height="0.1" width="0.1" depth="0.1"></a-box>
   </a-entity>
