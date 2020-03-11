@@ -2,13 +2,12 @@ import { updatePosition } from "../lib/update-position";
 
 AFRAME.registerComponent("record-position", {
   schema: {
-    target: { type: "selector" },
+    target: { type: "string" },
     mirror: { type: "boolean", default: true }
   },
 
   init() {
     this.tick = AFRAME.utils.throttleTick(this.tick, 42, this);
-    this.id = this.data.target.getAttribute("id");
   },
 
   tick(timestamp, delta) {

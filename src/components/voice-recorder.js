@@ -1,3 +1,5 @@
+import { downloadBlob } from "../lib/download-file";
+
 AFRAME.registerComponent("voice-recorder", {
   schema: {
     record: { type: "boolean", default: false }
@@ -32,20 +34,14 @@ AFRAME.registerComponent("voice-recorder", {
 
     this.mediaRecorder.onstop = () => {
       const blob = new Blob(this.chunks);
-      const url = window.URL.createObjectURL(blob);
-
-      var a = document.createElement("a");
-      document.body.appendChild(a);
-      a.style = "display: none";
-      a.href = url;
-      a.download = "test.webm";
-      a.click();
+      const url = downloadBlob(blob, "audio.webm");
 
       AFRAME.scenes[0].emit("audioRecorded", { url });
     };
 
     return this.mediaRecorder;
   },
+
   startRecording() {
     this.setupRecorder().then(mediaRecorder => {
       this.chunks = [];

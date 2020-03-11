@@ -27,7 +27,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js/,
+        test: /\.js$/,
         exclude: /(node_modules)/,
         use: ["babel-loader", "aframe-super-hot-loader"]
       },
@@ -48,11 +48,6 @@ module.exports = {
         test: /\.glsl/,
         exclude: /(node_modules)/,
         loader: "webpack-glsl-loader"
-      },
-      {
-        test: /\.css$/,
-        exclude: /(node_modules)/,
-        use: ["style-loader", "css-loader"]
       },
       {
         test: /\.png|\.jpg/,

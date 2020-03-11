@@ -1,4 +1,6 @@
 import { updatePosition } from "../lib/update-position";
+import { downloadJson } from "../lib/download-file";
+import recording from "../assets/data/sample-talk/motion-capture.json";
 
 AFRAME.registerComponent("recorder", {
   schema: {
@@ -45,7 +47,10 @@ AFRAME.registerComponent("recorder", {
   },
 
   stopRecording() {
+    if (!this.play) return;
+
     this.el.removeEventListener("record", this.recordEvent);
+    // downloadJson(this.recording, "motion-capture.json");
   },
 
   recordEvent(event) {
@@ -70,7 +75,8 @@ AFRAME.registerComponent("recorder", {
   startPlayback() {
     this.currentEventIndex = 0;
 
-    const firstFrame = this.recording[0];
+    // const firstFrame = this.recording[0];
+    const firstFrame = recording[0];
     this.currentTime = firstFrame.timestamp;
   },
 
@@ -79,7 +85,8 @@ AFRAME.registerComponent("recorder", {
 
     this.currentTime = this.currentTime + delta;
 
-    let currentEvent = this.recording[this.currentEventIndex];
+    let currentEvent = recording[this.currentEventIndex];
+    // let currentEvent = this.recording[this.currentEventIndex];
 
     while (currentEvent && this.currentTime >= currentEvent.timestamp) {
       updatePosition(
@@ -89,7 +96,8 @@ AFRAME.registerComponent("recorder", {
       );
 
       this.currentEventIndex += 1;
-      currentEvent = this.recording[this.currentEventIndex];
+      // currentEvent = this.recording[this.currentEventIndex];
+      currentEvent = recording[this.currentEventIndex];
     }
   }
 });

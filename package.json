@@ -11,18 +11,16 @@
     "@babel/preset-env": "^7.3.1",
     "aframe-super-hot-html-loader": "*",
     "aframe-super-hot-loader": "*",
+    "angle": "^0.9.1",
     "autoprefixer": "^7.2.3",
     "babel-loader": "^8.0.5",
     "babel-minify-webpack-plugin": "^0.3.1",
     "cross-env": "4.0.0",
-    "css-loader": "^0.28.7",
     "html-require-loader": "*",
     "json-loader": "^0.5.7",
-    "live-server": "^1.2.1",
-    "postcss-loader": "^2.0.9",
     "prettier": "^1.19.1",
     "shx": "^0.2.2",
-    "style-loader": "^0.23.1",
+    "surge": "^0.21.3",
     "url-loader": "^1.1.2",
     "webpack": "^4.29.5",
     "webpack-cli": "3.2.3",
@@ -37,9 +35,9 @@
   },
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack",
-    "deploy": "",
+    "deploy": "surge ./build ",
     "lint": "",
-    "format": "prettier --write ./**/*.{js,html,css,md,json}",
+    "format": "prettier --write './**/*.{js,html,css,md,json}'",
     "start": "webpack-dev-server --host 0.0.0.0 --progress --colors --hot-only --inline --port 3000"
   }
 }
