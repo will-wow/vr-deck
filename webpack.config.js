@@ -1,29 +1,31 @@
-var MinifyPlugin = require("babel-minify-webpack-plugin");
-var fs = require("fs");
-var ip = require("ip");
+var path = require("path");
+
+var CopyPlugin = require("copy-webpack-plugin");
+var HtmlWebpackPlugin = require("html-webpack-plugin");
 var path = require("path");
 var webpack = require("webpack");
-
-PLUGINS = [
-  new webpack.EnvironmentPlugin({
-    NODE_ENV: "development"
-  }),
-  new webpack.HotModuleReplacementPlugin()
-];
 
 module.exports = {
   devServer: {
     disableHostCheck: true,
     hotOnly: true
   },
-  entry: {
-    build: "./src/index.js"
-  },
+  entry: "./src/index.js",
   output: {
-    path: __dirname,
-    filename: "build/[name].js"
+    path: path.resolve(__dirname, "./dist"),
+    filename: "index.js"
   },
-  plugins: PLUGINS,
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: "./index.html",
+      filename: "./index.html"
+    }),
+    new webpack.EnvironmentPlugin({
+      NODE_ENV: "development"
+    }),
+    new webpack.HotModuleReplacementPlugin(),
+    new CopyPlugin([{ from: "src/assets", to: "assets" }])
+  ],
   module: {
     rules: [
       {
@@ -33,7 +35,7 @@ module.exports = {
       },
       {
         test: /\.html/,
-        exclude: /(node_modules)/,
+        exclude: /(node_modules|index.html)/,
         use: [
           "aframe-super-hot-html-loader",
           {

@@ -15,8 +15,11 @@
     "autoprefixer": "^7.2.3",
     "babel-loader": "^8.0.5",
     "babel-minify-webpack-plugin": "^0.3.1",
+    "copy-webpack-plugin": "^5.1.1",
     "cross-env": "4.0.0",
+    "html-loader": "^0.5.5",
     "html-require-loader": "*",
+    "html-webpack-plugin": "^3.2.0",
     "json-loader": "^0.5.7",
     "prettier": "^1.19.1",
     "shx": "^0.2.2",
@@ -35,7 +38,7 @@
   },
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack",
-    "deploy": "surge ./build ",
+    "deploy": "surge ./dist https://vrdeck.surge.sh",
     "lint": "",
     "format": "prettier --write './**/*.{js,html,css,md,json}'",
     "start": "webpack-dev-server --host 0.0.0.0 --progress --colors --hot-only --inline --port 3000"
