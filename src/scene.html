@@ -23,7 +23,10 @@
       src="https://rawgit.com/mrdoob/three.js/dev/examples/fonts/optimer_bold.typeface.json"
     ></a-asset-item>
 
-    <audio id="talkAudio" src="/assets/data/sample-talk/audio.webm"></audio>
+    <audio
+      id="audioRecording"
+      src="/assets/data/sample-talk/audio.webm"
+    ></audio>
   </a-assets>
 
   <!-- Background -->
@@ -82,11 +85,7 @@
       width="0.25"
       depth="0.25"
     >
-      <a-sound
-        bind-toggle__src="audioRecording"
-        bind__src="audioRecording"
-        bind__voice-player="play: play"
-      ></a-sound>
+      <a-sound src="#audioRecording" bind__voice-player="play: play"></a-sound>
     </a-box>
     <a-box id="speakerLeft" height="0.1" width="0.1" depth="0.1"></a-box>
     <a-box id="speakerRight" height="0.1" width="0.1" depth="0.1"></a-box>

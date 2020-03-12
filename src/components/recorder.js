@@ -47,8 +47,6 @@ AFRAME.registerComponent("recorder", {
   },
 
   stopRecording() {
-    if (!this.play) return;
-
     this.el.removeEventListener("record", this.recordEvent);
     // downloadJson(this.recording, "motion-capture.json");
   },
