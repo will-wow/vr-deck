@@ -1,3 +1,4 @@
+import { emit } from "../lib/action";
 import { downloadBlob } from "../lib/download-file";
 
 AFRAME.registerComponent("voice-recorder", {
@@ -34,9 +35,9 @@ AFRAME.registerComponent("voice-recorder", {
 
     this.mediaRecorder.onstop = () => {
       const blob = new Blob(this.chunks);
-      const url = downloadBlob(blob, "audio.webm");
+      // const url = downloadBlob(blob, "audio.webm");
 
-      AFRAME.scenes[0].emit("audioRecorded", { url });
+      // emit("audioRecorded", { url });
     };
 
     return this.mediaRecorder;

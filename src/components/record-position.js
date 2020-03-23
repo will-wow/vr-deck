@@ -15,7 +15,9 @@ AFRAME.registerComponent("record-position", {
 
     const target = this.data.target;
 
-    // updatePosition(target, position, rotation);
+    if (this.data.mirror) {
+      updatePosition(target, position, rotation);
+    }
 
     this.el.emit("record", { timestamp, position, rotation, target });
   }

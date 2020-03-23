@@ -1,3 +1,5 @@
+import { emit } from "../lib/action";
+
 /**
  * Trigger a an action from an event
  */
@@ -12,7 +14,7 @@ AFRAME.registerComponent("trigger-action", {
     const el = this.el;
 
     el.addEventListener(event, _e => {
-      AFRAME.scenes[0].emit(action);
+      emit(action);
     });
   }
 });

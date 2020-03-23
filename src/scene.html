@@ -1,6 +1,7 @@
 <a-scene
   keyboard-slide
-  bind__recorder="play: play; record: record"
+  bind__speaker-recorder="record: record"
+  bind__speaker-replayer="play: play"
   bind__voice-recorder="record: record"
 >
   <a-assets>
@@ -10,7 +11,11 @@
     />
     <img id="skyTexture" src="https://cdn.aframe.io/a-painter/images/sky.jpg" />
 
-    <a-mixin id="slide__text" class="slide__text"></a-mixin>
+    <a-mixin
+      id="slide__text"
+      class="slide__text"
+      bind__highlight="highlighted: highlightedLine"
+    ></a-mixin>
 
     <a-mixin
       id="action-button"
@@ -34,7 +39,7 @@
     id="ground"
     src="#groundTexture"
     radius="32"
-    height="0.1"
+    height="0.2"
   ></a-cylinder>
 
   <a-sky
@@ -49,25 +54,35 @@
     <a-box
       mixin="action-button"
       position="-1 0 -2"
-      color="blue"
+      bind__color-switch="on: mirror"
+      color-switch="onColor: blue; offColor: darkblue"
       trigger-action="action: toggleMirror"
     ></a-box>
     <a-box
       mixin="action-button"
       position="0 0 -2"
-      color="green"
+      bind__color-switch="on: play"
+      color-switch="onColor: green; offColor: darkgreen"
       trigger-action="action: togglePlay"
     ></a-box>
     <a-box
       mixin="action-button"
       position="1 0 -2"
-      color="red"
+      bind__color-switch="on: record"
+      color-switch="onColor: red; offColor: darkred"
       trigger-action="action: toggleRecord"
+    ></a-box>
+
+    <a-box
+      mixin="action-button"
+      position="2 0 -2"
+      color="black"
+      trigger-action="action: nextSlide"
     ></a-box>
   </a-entity>
 
   <!-- Primary Deck -->
-  <a-entity position="3 2.5 1" rotation="0 180 0">
+  <a-entity position="3 2.5 1" rotation="0 180 0" bind__visible="!play">
     <a-entity slide bind="slide.show: slide"></a-entity>
   </a-entity>
 
@@ -97,6 +112,7 @@
     hand-controls="hand: left"
     trigger-action="action: prevSlide; event: gripdown;"
     record-position="target: #speakerLeft"
+    bind__record-position="mirror: mirror"
   ></a-entity>
 
   <a-entity
@@ -105,9 +121,16 @@
     laser-controls="objects=.slide__text,.action-button"
     trigger-action="action: nextSlide; event: gripdown;"
     record-position="target: #speakerRight"
+    bind__record-position="mirror: mirror"
   ></a-entity>
 
-  <a-camera record-position="target: #speakerHead">
+  <a-entity
+    camera
+    look-controls="pointerLockEnabled: true"
+    position="0 1.6 0"
+    record-position="target: #speakerHead"
+    bind__record-position="mirror: mirror"
+  >
     <a-cursor></a-cursor>
-  </a-camera>
+  </a-entity>
 </a-scene>

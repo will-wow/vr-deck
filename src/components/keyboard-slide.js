@@ -1,10 +1,12 @@
+import { emit } from "../lib/action";
+
 AFRAME.registerComponent("keyboard-slide", {
   init() {
     window.addEventListener("keypress", event => {
       if (event.key === "n") {
-        AFRAME.scenes[0].emit("nextSlide");
+        emit("nextSlide");
       } else if (event.key === "p") {
-        AFRAME.scenes[0].emit("prevSlide");
+        emit("prevSlide");
       }
     });
   }

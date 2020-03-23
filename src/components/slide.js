@@ -43,10 +43,6 @@ AFRAME.registerComponent("slide", {
       highlightColor: element.highlightColor || "red"
     });
 
-    slideElement.setAttribute("bind__highlight", {
-      highlighted: "highlightedLine"
-    });
-
     const themeStyles = theme.styles[element.kind] || theme.styles.p;
     const fontSize = themeStyles.fontSize;
 
