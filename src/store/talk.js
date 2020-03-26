@@ -13,8 +13,6 @@ export async function fetchTalk(slug) {
 
   fetchMotionCapture(talk);
 
-  console.log(talk);
-
   return talk;
 }
 
