@@ -1,5 +1,4 @@
 import { emit } from "../lib/action";
-import { downloadBlob } from "../lib/download-file";
 
 AFRAME.registerComponent("voice-recorder", {
   schema: {

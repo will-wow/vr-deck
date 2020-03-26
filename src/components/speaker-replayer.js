@@ -1,7 +1,7 @@
 import { updatePosition } from "../lib/update-position";
 import { emit } from "../lib/action";
 
-import recording from "../assets/data/sample-talk/motion-capture.json";
+import { getMotionCapture } from "../store/talk";
 
 AFRAME.registerComponent("speaker-replayer", {
   schema: {
@@ -29,7 +29,8 @@ AFRAME.registerComponent("speaker-replayer", {
     this.currentEventIndex = 0;
 
     const localRecording = this.el.components["speaker-recorder"].recording;
-    this.recording = localRecording.length > 0 ? localRecording : recording;
+    this.recording =
+      localRecording.length > 0 ? localRecording : getMotionCapture();
 
     const firstFrame = this.recording[0];
     this.currentTime = firstFrame.timestamp;

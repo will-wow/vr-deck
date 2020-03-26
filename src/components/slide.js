@@ -1,5 +1,4 @@
-import deck from "../data/deck";
-import theme from "../data/theme";
+import { getTalk } from "../store/talk";
 
 /**
  *
@@ -24,8 +23,12 @@ AFRAME.registerComponent("slide", {
     this.y = 0;
 
     // Render new slide
-    const slide = deck.slides[show];
-    slide.forEach(this.renderLine, this);
+    const { deck } = getTalk();
+    if (deck) {
+      const slide = deck.slides[show];
+      console.log(slide, show);
+      slide.forEach(this.renderLine, this);
+    }
   },
 
   renderLine(element, i) {
@@ -43,6 +46,7 @@ AFRAME.registerComponent("slide", {
       highlightColor: element.highlightColor || "red"
     });
 
+    const theme = getTalk().theme;
     const themeStyles = theme.styles[element.kind] || theme.styles.p;
     const fontSize = themeStyles.fontSize;
 

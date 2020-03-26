@@ -1,7 +1,5 @@
-import deck from "../data/deck";
-const slideCount = deck.slides.length;
-
-const ACTIONS = {
+export const ACTIONS = {
+  loadedTalk: "loadedTalk",
   nextSlide: "nextSlide",
   prevSlide: "prevSlide",
   highlight: "highlight",
@@ -22,20 +20,29 @@ AFRAME.registerState({
     play: false,
     record: false,
     mirror: true,
-    slide: 0,
+    talkLoaded: false,
+    slide: -1,
+    slideCount: 0,
     highlightedLine: -1,
-    audioRecording: null
+    audioUrl: null,
+    motionCaptureUrl: null
   },
 
   handlers: {
+    [ACTIONS.loadedTalk](state, payload) {
+      state.audioUrl = `url(${payload.audio})`;
+      state.slideCount = payload.deck.slides.length;
+      state.slide = 0;
+      state.talkLoaded = true;
+    },
     [ACTIONS.nextSlide](state, _payload) {
-      state.slide = (state.slide + 1) % slideCount;
+      state.slide = (state.slide + 1) % state.slideCount;
       state.highlightedLine = -1;
     },
     [ACTIONS.prevSlide](state, _payload) {
       const newState = state.slide - 1;
       if (newState < 0) {
-        state.slide = slideCount - 1;
+        state.slide = state.slideCount - 1;
       } else {
         state.slide = newState;
       }
@@ -64,7 +71,7 @@ AFRAME.registerState({
       }
     },
     [ACTIONS.audioRecorded](state, { url }) {
-      state.audioRecording = `url(${url})`;
+      state.audioUrl = `url(${url})`;
     }
   }
 });

@@ -1,4 +1,5 @@
 <a-scene
+  fetch-talk
   keyboard-slide
   bind__speaker-recorder="record: record"
   bind__speaker-replayer="play: play"
@@ -8,8 +9,13 @@
     <img
       id="groundTexture"
       src="https://cdn.aframe.io/a-painter/images/floor.jpg"
+      crossorigin="anonymous"
     />
-    <img id="skyTexture" src="https://cdn.aframe.io/a-painter/images/sky.jpg" />
+    <img
+      id="skyTexture"
+      src="https://cdn.aframe.io/a-painter/images/sky.jpg"
+      crossorigin="anonymous"
+    />
 
     <a-mixin
       id="slide__text"
@@ -27,11 +33,6 @@
       id="optimerBoldFont"
       src="https://rawgit.com/mrdoob/three.js/dev/examples/fonts/optimer_bold.typeface.json"
     ></a-asset-item>
-
-    <audio
-      id="audioRecording"
-      src="/assets/data/sample-talk/audio.webm"
-    ></audio>
   </a-assets>
 
   <!-- Background -->
@@ -83,12 +84,12 @@
 
   <!-- Primary Deck -->
   <a-entity position="3 2.5 1" rotation="0 180 0" bind__visible="!play">
-    <a-entity slide bind="slide.show: slide"></a-entity>
+    <a-entity toogle__slide="talkLoaded" bind__slide="show: slide"></a-entity>
   </a-entity>
 
   <!-- Mirrored Deck -->
   <a-entity position="-3 2.5 -5">
-    <a-entity slide bind="slide.show: slide"></a-entity>
+    <a-entity toogle__slide="talkLoaded" bind__slide="show: slide"></a-entity>
   </a-entity>
 
   <!-- Mirrored Speaker -->
@@ -100,7 +101,12 @@
       width="0.25"
       depth="0.25"
     >
-      <a-sound src="#audioRecording" bind__voice-player="play: play"></a-sound>
+      <a-sound
+        crossorigin="anonymous"
+        toggle__src="audioUrl"
+        bind__src="audioUrl"
+        bind__voice-player="play: play"
+      ></a-sound>
     </a-box>
     <a-box id="speakerLeft" height="0.1" width="0.1" depth="0.1"></a-box>
     <a-box id="speakerRight" height="0.1" width="0.1" depth="0.1"></a-box>
