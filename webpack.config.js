@@ -1,9 +1,9 @@
-var path = require("path");
+const path = require("path");
 
-var CopyPlugin = require("copy-webpack-plugin");
-var HtmlWebpackPlugin = require("html-webpack-plugin");
-var path = require("path");
-var webpack = require("webpack");
+const CopyPlugin = require("copy-webpack-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const Dotenv = require("dotenv-webpack");
+const webpack = require("webpack");
 
 module.exports = {
   devServer: {
@@ -22,6 +22,10 @@ module.exports = {
     }),
     new webpack.EnvironmentPlugin({
       NODE_ENV: "development"
+    }),
+    new Dotenv({
+      path: process.env.NODE_ENV === "production" ? ".env.prod" : ".env",
+      systemvars: true
     }),
     new webpack.HotModuleReplacementPlugin(),
     new CopyPlugin([{ from: "src/assets", to: "assets" }])

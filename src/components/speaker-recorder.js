@@ -7,14 +7,8 @@ AFRAME.registerComponent("speaker-recorder", {
   init() {
     this.recording = [];
 
-    /* Events */
-    this.startRecording = this.startRecording.bind(this);
-    this.stopRecording = this.stopRecording.bind(this);
     this.recordEvent = this.recordEvent.bind(this);
     this.recordAction = this.recordAction.bind(this);
-
-    this.el.addEventListener("record__start", this.startRecording);
-    this.el.addEventListener("record__stop", this.stopRecording);
   },
 
   update(oldData) {
@@ -42,12 +36,8 @@ AFRAME.registerComponent("speaker-recorder", {
     this.el.removeEventListener("record", this.recordEvent);
 
     RECORDABLE_ACTIONS.forEach(action => {
-      this.el.addEventListener(action, this.recordAction);
+      this.el.removeEventListener(action, this.recordAction);
     });
-
-    console.log(this.recording);
-
-    // downloadJson(this.recording, "motion-capture.json");
   },
 
   recordEvent(event) {

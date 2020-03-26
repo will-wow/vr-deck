@@ -6,6 +6,7 @@ AFRAME.registerComponent("voice-recorder", {
     record: { type: "boolean", default: false }
   },
   init() {
+    this.recording = null;
     this.mediaRecorder = null;
     this.chunks = [];
 
@@ -34,10 +35,10 @@ AFRAME.registerComponent("voice-recorder", {
     };
 
     this.mediaRecorder.onstop = () => {
-      const blob = new Blob(this.chunks);
-      // const url = downloadBlob(blob, "audio.webm");
+      this.recording = new Blob(this.chunks);
+      const url = window.URL.createObjectURL(this.recording);
 
-      // emit("audioRecorded", { url });
+      emit("audioRecorded", { url });
     };
 
     return this.mediaRecorder;
