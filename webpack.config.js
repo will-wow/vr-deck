@@ -24,7 +24,7 @@ module.exports = {
       NODE_ENV: "development"
     }),
     new Dotenv({
-      path: process.env.NODE_ENV === "production" ? ".env.prod" : ".env",
+      path: process.env.NODE_ENV === "production" ? ".env.production" : ".env",
       systemvars: true
     }),
     new webpack.HotModuleReplacementPlugin(),
