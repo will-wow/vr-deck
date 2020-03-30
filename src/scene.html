@@ -1,9 +1,11 @@
 <a-scene
   fetch-talk
   keyboard-slide
-  bind__speaker-recorder="record: record"
+  bind__speaker-recorder="record: record; slide: slide"
   bind__speaker-replayer="play: play"
   bind__voice-recorder="record: record"
+  bind-toggle__deck-uploader="talk.edit"
+  bind__deck-uploader="id: talk.id"
 >
   <a-assets>
     <img
@@ -61,6 +63,7 @@
       color-switch="onColor: blue; offColor: darkblue"
       trigger-action="action: toggleMirror"
     ></a-box>
+
     <a-box
       mixin="action-button"
       position="0 0 -2"
@@ -68,6 +71,7 @@
       color-switch="onColor: green; offColor: darkgreen"
       trigger-action="action: togglePlay"
     ></a-box>
+
     <a-box
       bind__visible="talk.edit"
       mixin="action-button"
@@ -83,6 +87,25 @@
       position="2 0 -2"
       color="black"
       trigger-action="action: nextSlide"
+    ></a-box>
+
+    <!-- Reset -->
+    <a-box
+      bind__visible="talk.edit && newRecording"
+      mixin="action-button"
+      position="0 0 -1"
+      color="purple"
+      trigger-action="action: loadTalk"
+    ></a-box>
+
+    <!-- Upload -->
+    <a-box
+      bind__visible="talk.edit && newRecording"
+      mixin="action-button"
+      position="1 0 -1"
+      bind__color-switch="on: uploading"
+      color-switch="onColor: darkorange; offColor: orange"
+      trigger-action="action: uploadData"
     ></a-box>
   </a-entity>
 
@@ -112,7 +135,6 @@
       <a-sound
         crossorigin="anonymous"
         bind__src="audioUrl"
-        bind-toggle__src="audioUrl"
         bind__voice-player="play: play"
       ></a-sound>
     </a-box>

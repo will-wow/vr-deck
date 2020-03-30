@@ -2,6 +2,7 @@ import { updatePosition } from "../lib/update-position";
 import { emit } from "../lib/action";
 
 import { getMotionCapture } from "../store/talk";
+import { ACTIONS } from "../store/state";
 
 AFRAME.registerComponent("speaker-replayer", {
   schema: {
@@ -29,6 +30,7 @@ AFRAME.registerComponent("speaker-replayer", {
     this.currentEventIndex = 0;
 
     const localRecording = this.el.components["speaker-recorder"].recording;
+
     this.recording =
       localRecording.length > 0 ? localRecording : getMotionCapture();
 
@@ -52,6 +54,11 @@ AFRAME.registerComponent("speaker-replayer", {
 
       this.currentEventIndex += 1;
       currentEvent = this.recording[this.currentEventIndex];
+    }
+
+    // Finish playing when out of events
+    if (this.currentEventIndex >= this.recording.length) {
+      emit(ACTIONS.playFinished);
     }
   },
   handlePositionEvent({ target, position, rotation }) {

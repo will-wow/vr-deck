@@ -1,15 +1,22 @@
 export const ACTIONS = {
+  loadTalk: "loadTalk",
   loadedTalk: "loadedTalk",
+  setSlide: "setSlide",
   nextSlide: "nextSlide",
   prevSlide: "prevSlide",
   highlight: "highlight",
   toggleMirror: "toggleMirror",
   togglePlay: "togglePlay",
+  playFinished: "playFinished",
   toggleRecord: "toggleRecord",
-  audioRecorded: "audioRecorded"
+  audioRecorded: "audioRecorded",
+  uploadData: "uploadData",
+  uploadDataSuccess: "uploadDataSuccess",
+  uploadDataFailure: "uploadDataFailure"
 };
 
 export const RECORDABLE_ACTIONS = [
+  ACTIONS.setSlide,
   ACTIONS.nextSlide,
   ACTIONS.prevSlide,
   ACTIONS.highlight
@@ -26,6 +33,8 @@ AFRAME.registerState({
     highlightedLine: -1,
     audioUrl: null,
     motionCaptureUrl: null,
+    newRecording: false,
+    uploading: true,
     talk: { edit: false }
   },
 
@@ -36,6 +45,11 @@ AFRAME.registerState({
       state.slide = 0;
       state.talkLoaded = true;
       state.talk = payload;
+      state.newRecording = false;
+    },
+    [ACTIONS.setSlide](state, payload) {
+      state.slide = payload;
+      state.highlightedLine = -1;
     },
     [ACTIONS.nextSlide](state, _payload) {
       state.slide = (state.slide + 1) % state.slideCount;
@@ -64,6 +78,9 @@ AFRAME.registerState({
         state.mirror = false;
       }
     },
+    [ACTIONS.playFinished](state) {
+      state.play = false;
+    },
     [ACTIONS.toggleRecord](state, _payload) {
       state.record = !state.record;
 
@@ -74,6 +91,18 @@ AFRAME.registerState({
     },
     [ACTIONS.audioRecorded](state, { url }) {
       state.audioUrl = `url(${url})`;
+      // Note there's new data to upload
+      state.newRecording = true;
+    },
+    [ACTIONS.uploadData](state) {
+      state.uploading = true;
+    },
+    [ACTIONS.uploadDataSuccess](state) {
+      state.newRecording = false;
+      state.uploading = false;
+    },
+    [ACTIONS.uploadDataFailure](state) {
+      state.uploading = false;
     }
   }
 });

@@ -8,12 +8,14 @@ AFRAME.registerComponent("fetch-talk", {
     const params = getParams();
     const slug = params.get("talk") || "test-deck";
 
+    this.loadTalk = this.loadTalk.bind(this);
+
     this.loadTalk(slug);
+    this.el.addEventListener(ACTIONS.loadTalk, () => this.loadTalk(slug));
   },
   async loadTalk(slug) {
     const talk = await fetchTalk(slug);
 
-    console.log("talk", talk.name);
     document.title = `VR Deck: ${talk.name}`;
 
     emit(ACTIONS.loadedTalk, talk);

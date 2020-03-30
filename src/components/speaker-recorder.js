@@ -1,8 +1,10 @@
-import { RECORDABLE_ACTIONS } from "../store/state";
+import { RECORDABLE_ACTIONS, ACTIONS } from "../store/state";
+import { emit } from "../lib/action";
 
 AFRAME.registerComponent("speaker-recorder", {
   schema: {
-    record: { type: "boolean", default: false }
+    record: { type: "boolean", default: false },
+    slide: { type: "number" }
   },
   init() {
     this.recording = [];
@@ -30,6 +32,8 @@ AFRAME.registerComponent("speaker-recorder", {
     RECORDABLE_ACTIONS.forEach(action => {
       this.el.addEventListener(action, this.recordAction);
     });
+
+    emit(ACTIONS.setSlide, this.data.slide);
   },
 
   stopRecording() {

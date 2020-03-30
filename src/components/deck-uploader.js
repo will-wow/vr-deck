@@ -1,15 +1,16 @@
-import FormData from "form-data";
 import api from "../lib/api";
+import { emit } from "../lib/action";
+import { ACTIONS } from "../store/state";
 
 AFRAME.registerComponent("deck-uploader", {
   schema: {
-    slug: { type: "string" }
+    id: { type: "number" }
   },
   dependencies: ["speaker-recorder", "voice-recorder"],
 
   init() {
     this.upload = this.upload.bind(this);
-    this.el.addEventListener("upload__start", this.start);
+    this.el.addEventListener(ACTIONS.uploadData, this.upload);
   },
 
   async upload() {
@@ -18,25 +19,24 @@ AFRAME.registerComponent("deck-uploader", {
 
     const audioFile = this.el.components["voice-recorder"].recording;
 
-    updateData(this.data.slug, audioFile, motionCaptureFile);
+    uploadData(this.data.id, audioFile, motionCaptureFile);
   }
-
-  /*
-    TODO:
-    - put "recorded" state in store to toggle button enabled, 
-    - Upload with multi-part from data https://github.com/axios/axios/pull/2805/files
-    - put uploading state in store
-    - show spinner or something
-  */
 });
 
-function updateData(slug, audioFile, motionCaptureFile) {
+async function uploadData(id, audioFile, motionCaptureFile) {
   const form = new FormData();
-  form.append("audio", audioFile);
-  form.append("motion_capture", motionCaptureFile);
-  console.log(form);
+  form.append("talk[audio]", audioFile, "audio.webm");
+  form.append("talk[motion_capture]", motionCaptureFile, "motion_capture.json");
 
-  // api.patch(`/talks/${slug}`, form, { headers: form.getHeaders() });
+  try {
+    await api.patch(`/me/talks/${id}`, form, {
+      headers: { "Content-Type": "multipart/form-data" }
+    });
+    emit(ACTIONS.uploadDataSuccess);
+  } catch (e) {
+    console.error("talk upload failed", e);
+    emit(ACTIONS.uploadDataFailure);
+  }
 }
 
 function dataToFile(data) {

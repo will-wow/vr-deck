@@ -36,8 +36,7 @@
     "@types/aframe": "^0.8.4",
     "aframe-state-component": "^6.8.0",
     "aframe-text-geometry-component": "^0.5.1",
-    "axios": "^0.19.2",
-    "form-data": "^3.0.0"
+    "axios": "^0.19.2"
   },
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack",
