@@ -5,12 +5,20 @@ AFRAME.registerComponent("highlight-able", {
     line: { type: "int" }
   },
   init() {
-    this.el.addEventListener("mouseenter", () => {
-      emit("highlight", { line: this.data.line });
-    });
+    this.onMouseEnter = this.onMouseEnter.bind(this);
+    this.onMouseLeave = this.onMouseLeave.bind(this);
 
-    this.el.addEventListener("mouseleave", () => {
-      emit("highlight", { line: -1 });
-    });
+    this.el.addEventListener("mouseenter", this.onMouseEnter);
+    this.el.addEventListener("mouseleave", this.onMouseLeave);
+  },
+  remove() {
+    this.el.removeEventListener("mouseenter", this.onMouseEnter);
+    this.el.removeEventListener("mouseleave", this.onMouseLeave);
+  },
+  onMouseEnter() {
+    emit("highlight", { line: this.data.line });
+  },
+  onMouseLeave() {
+    emit("highlight", { line: -1 });
   }
 });

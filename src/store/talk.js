@@ -1,6 +1,4 @@
 import api from "../lib/api";
-import { emit } from "../lib/action";
-import { ACTIONS } from "../store/state";
 
 let talk = {};
 let motionCapture = [];
@@ -8,8 +6,6 @@ let motionCapture = [];
 export async function fetchTalk(slug) {
   const response = await api.get(`/talks/${slug}`);
   talk = response.data.data;
-
-  emit(ACTIONS.loadedTalk, talk);
 
   fetchMotionCapture(talk);
 
@@ -29,5 +25,4 @@ async function fetchMotionCapture(talk) {
 
   const response = await api.get(talk.motion_capture);
   motionCapture = response.data;
-  console.log(motionCapture);
 }

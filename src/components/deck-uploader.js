@@ -2,6 +2,9 @@ import FormData from "form-data";
 import api from "../lib/api";
 
 AFRAME.registerComponent("deck-uploader", {
+  schema: {
+    slug: { type: "string" }
+  },
   dependencies: ["speaker-recorder", "voice-recorder"],
 
   init() {
@@ -14,6 +17,8 @@ AFRAME.registerComponent("deck-uploader", {
     const motionCaptureFile = dataToFile(motionCapture);
 
     const audioFile = this.el.components["voice-recorder"].recording;
+
+    updateData(this.data.slug, audioFile, motionCaptureFile);
   }
 
   /*
@@ -29,8 +34,9 @@ function updateData(slug, audioFile, motionCaptureFile) {
   const form = new FormData();
   form.append("audio", audioFile);
   form.append("motion_capture", motionCaptureFile);
+  console.log(form);
 
-  api.patch(`/talks/${slug}`, form, { headers: form.getHeaders() });
+  // api.patch(`/talks/${slug}`, form, { headers: form.getHeaders() });
 }
 
 function dataToFile(data) {

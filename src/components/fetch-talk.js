@@ -1,4 +1,6 @@
 import { fetchTalk } from "../store/talk";
+import { emit } from "../lib/action";
+import { ACTIONS } from "../store/state";
 
 AFRAME.registerComponent("fetch-talk", {
   init() {
@@ -6,7 +8,15 @@ AFRAME.registerComponent("fetch-talk", {
     const params = getParams();
     const slug = params.get("talk") || "test-deck";
 
-    fetchTalk(slug);
+    this.loadTalk(slug);
+  },
+  async loadTalk(slug) {
+    const talk = await fetchTalk(slug);
+
+    console.log("talk", talk.name);
+    document.title = `VR Deck: ${talk.name}`;
+
+    emit(ACTIONS.loadedTalk, talk);
   }
 });
 

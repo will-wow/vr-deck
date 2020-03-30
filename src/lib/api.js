@@ -1,5 +1,6 @@
 import axios from "axios";
 
 export default axios.create({
-  baseURL: `${process.env.API}`
+  baseURL: `${process.env.API}`,
+  withCredentials: true
 });

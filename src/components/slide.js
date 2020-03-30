@@ -26,7 +26,6 @@ AFRAME.registerComponent("slide", {
     const { deck } = getTalk();
     if (deck) {
       const slide = deck.slides[show];
-      console.log(slide, show);
       slide.forEach(this.renderLine, this);
     }
   },

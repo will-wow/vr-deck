@@ -25,7 +25,8 @@ AFRAME.registerState({
     slideCount: 0,
     highlightedLine: -1,
     audioUrl: null,
-    motionCaptureUrl: null
+    motionCaptureUrl: null,
+    talk: { edit: false }
   },
 
   handlers: {
@@ -34,6 +35,7 @@ AFRAME.registerState({
       state.slideCount = payload.deck.slides.length;
       state.slide = 0;
       state.talkLoaded = true;
+      state.talk = payload;
     },
     [ACTIONS.nextSlide](state, _payload) {
       state.slide = (state.slide + 1) % state.slideCount;

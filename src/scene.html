@@ -21,6 +21,7 @@
       id="slide__text"
       class="slide__text"
       bind__highlight="highlighted: highlightedLine"
+      bind-toggle__highlight-able="talk.edit"
     ></a-mixin>
 
     <a-mixin
@@ -53,6 +54,7 @@
   <!-- Controls -->
   <a-entity position="0 0.2 0">
     <a-box
+      bind__visible="talk.edit"
       mixin="action-button"
       position="-1 0 -2"
       bind__color-switch="on: mirror"
@@ -67,6 +69,7 @@
       trigger-action="action: togglePlay"
     ></a-box>
     <a-box
+      bind__visible="talk.edit"
       mixin="action-button"
       position="1 0 -2"
       bind__color-switch="on: record"
@@ -75,6 +78,7 @@
     ></a-box>
 
     <a-box
+      bind__visible="talk.edit"
       mixin="action-button"
       position="2 0 -2"
       color="black"
@@ -83,7 +87,11 @@
   </a-entity>
 
   <!-- Primary Deck -->
-  <a-entity position="3 2.5 1" rotation="0 180 0" bind__visible="!play">
+  <a-entity
+    position="3 2.5 1"
+    rotation="0 180 0"
+    bind__visible="!play && talk.edit"
+  >
     <a-entity toogle__slide="talkLoaded" bind__slide="show: slide"></a-entity>
   </a-entity>
 
@@ -103,8 +111,8 @@
     >
       <a-sound
         crossorigin="anonymous"
-        toggle__src="audioUrl"
         bind__src="audioUrl"
+        bind-toggle__src="audioUrl"
         bind__voice-player="play: play"
       ></a-sound>
     </a-box>
