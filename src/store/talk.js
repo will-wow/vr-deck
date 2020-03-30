@@ -25,6 +25,8 @@ export function getMotionCapture() {
 }
 
 async function fetchMotionCapture(talk) {
+  if (!talk.motion_capture) return;
+
   const response = await api.get(talk.motion_capture);
   motionCapture = response.data;
   console.log(motionCapture);
