@@ -1,6 +1,8 @@
 # VR Deck
 
-A tool for presenting and viewing talks in virtual reality
+VR Deck is tool for presenting and viewing short talks in virtual reality.
+
+The Viwer is an A-Frame app that allows users to view and record talks.
 
 ## Contributing
 
@@ -28,3 +30,7 @@ yarn angle initlocalcomponent component-name
 ```bash
 yarn format
 ```
+
+## Deploy
+
+This app is auto-deploying on [Render](render.com) on every push to `master`.

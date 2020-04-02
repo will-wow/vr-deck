@@ -8,12 +8,14 @@ const webpack = require("webpack");
 module.exports = {
   devServer: {
     disableHostCheck: true,
-    hotOnly: true
+    hotOnly: true,
+    historyApiFallback: true
   },
   entry: "./src/index.js",
   output: {
     path: path.resolve(__dirname, "./dist"),
-    filename: "index.js"
+    filename: "index.js",
+    publicPath: "/"
   },
   plugins: [
     new HtmlWebpackPlugin({

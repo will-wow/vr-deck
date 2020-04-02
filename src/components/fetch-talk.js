@@ -4,9 +4,7 @@ import { ACTIONS } from "../store/state";
 
 AFRAME.registerComponent("fetch-talk", {
   init() {
-    // TODO: use the path instead of params
-    const params = getParams();
-    const slug = params.get("talk") || "test-deck";
+    const slug = getSlug();
 
     this.loadTalk = this.loadTalk.bind(this);
 
@@ -22,6 +20,7 @@ AFRAME.registerComponent("fetch-talk", {
   }
 });
 
-function getParams() {
-  return new URL(document.location).searchParams;
+function getSlug() {
+  const url = new URL(document.location);
+  return url.pathname.replace(/^\//, "");
 }
