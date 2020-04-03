@@ -1,0 +1,26 @@
+<a-entity
+  id="teleHand"
+  hand-controls="hand: left"
+  trigger-action="action: prevSlide; event: gripdown;"
+  record-position="target: #speakerLeft"
+  bind__record-position="mirror: mirror"
+></a-entity>
+
+<a-entity
+  id="blockHand"
+  hand-controls="hand: right"
+  laser-controls="objects=.slide__text,.action-button"
+  trigger-action="action: nextSlide; event: gripdown;"
+  record-position="target: #speakerRight"
+  bind__record-position="mirror: mirror"
+></a-entity>
+
+<a-entity
+  camera
+  look-controls="pointerLockEnabled: true"
+  position="0 1.6 0"
+  record-position="target: #speakerHead"
+  bind__record-position="mirror: mirror"
+>
+  <a-cursor></a-cursor>
+</a-entity>

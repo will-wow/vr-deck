@@ -1,0 +1,17 @@
+<a-entity rotation="0 180 0" position="1 0 -4">
+  <a-box
+    id="speakerHead"
+    color="yellow"
+    height="0.25"
+    width="0.25"
+    depth="0.25"
+  >
+    <a-sound
+      crossorigin="anonymous"
+      bind__src="audioUrl"
+      bind__voice-player="play: play"
+    ></a-sound>
+  </a-box>
+  <a-box id="speakerLeft" height="0.1" width="0.1" depth="0.1"></a-box>
+  <a-box id="speakerRight" height="0.1" width="0.1" depth="0.1"></a-box>
+</a-entity>

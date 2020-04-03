@@ -1,0 +1,30 @@
+<a-assets>
+  <img
+    id="groundTexture"
+    src="https://cdn.aframe.io/a-painter/images/floor.jpg"
+    crossorigin="anonymous"
+  />
+  <img
+    id="skyTexture"
+    src="https://cdn.aframe.io/a-painter/images/sky.jpg"
+    crossorigin="anonymous"
+  />
+
+  <a-mixin
+    id="slide__text"
+    class="slide__text"
+    bind__highlight="highlighted: highlightedLine"
+    bind-toggle__highlight-able="talk.edit"
+  ></a-mixin>
+
+  <a-mixin
+    id="action-button"
+    class=".action-button"
+    geometry="height: 0.25; width: 0.25; depth: 0.25"
+  ></a-mixin>
+
+  <a-asset-item
+    id="optimerBoldFont"
+    src="https://rawgit.com/mrdoob/three.js/dev/examples/fonts/optimer_bold.typeface.json"
+  ></a-asset-item>
+</a-assets>

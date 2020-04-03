@@ -1,0 +1,13 @@
+<!-- Primary Deck -->
+<a-entity
+  position="3 2.5 1"
+  rotation="0 180 0"
+  bind__visible="!play && talk.edit"
+>
+  <a-entity toogle__slide="talkLoaded" bind__slide="show: slide"></a-entity>
+</a-entity>
+
+<!-- Mirrored Deck -->
+<a-entity position="-3 2.5 -5">
+  <a-entity toogle__slide="talkLoaded" bind__slide="show: slide"></a-entity>
+</a-entity>
