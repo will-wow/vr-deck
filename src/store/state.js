@@ -12,14 +12,22 @@ export const ACTIONS = {
   audioRecorded: "audioRecorded",
   uploadData: "uploadData",
   uploadDataSuccess: "uploadDataSuccess",
-  uploadDataFailure: "uploadDataFailure"
+  uploadDataFailure: "uploadDataFailure",
+  pointStart: "pointStart",
+  pointEnd: "pointEnd"
+};
+
+const LASER_COLOR = {
+  red: "red",
+  blue: "#74BEC1"
 };
 
 export const RECORDABLE_ACTIONS = [
   ACTIONS.setSlide,
   ACTIONS.nextSlide,
   ACTIONS.prevSlide,
-  ACTIONS.highlight
+  ACTIONS.pointStart,
+  ACTIONS.pointEnd
 ];
 
 AFRAME.registerState({
@@ -35,7 +43,9 @@ AFRAME.registerState({
     motionCaptureUrl: null,
     newRecording: false,
     uploading: true,
-    talk: { edit: false }
+    talk: { edit: false },
+    pointing: false,
+    laserColor: LASER_COLOR.blue
   },
 
   handlers: {
@@ -103,6 +113,14 @@ AFRAME.registerState({
     },
     [ACTIONS.uploadDataFailure](state) {
       state.uploading = false;
+    },
+    [ACTIONS.pointStart](state) {
+      state.pointing = true;
+      state.laserColor = LASER_COLOR.red;
+    },
+    [ACTIONS.pointEnd](state) {
+      state.pointing = false;
+      state.laserColor = LASER_COLOR.blue;
     }
   }
 });

@@ -13,5 +13,13 @@
     ></a-sound>
   </a-box>
   <a-box id="speakerLeft" height="0.1" width="0.1" depth="0.1"></a-box>
-  <a-box id="speakerRight" height="0.1" width="0.1" depth="0.1"></a-box>
+  <a-box
+    id="speakerRight"
+    height="0.1"
+    width="0.1"
+    depth="0.1"
+    bind-toggle__raycaster="pointing"
+    bind__raycaster="showLine: pointing"
+    bind__line="color: laserColor"
+  ></a-box>
 </a-entity>

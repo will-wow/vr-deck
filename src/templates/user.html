@@ -1,16 +1,22 @@
 <a-entity
-  id="teleHand"
+  id="leftHand"
   hand-controls="hand: left"
   trigger-action="action: prevSlide; event: gripdown;"
   record-position="target: #speakerLeft"
   bind__record-position="mirror: mirror"
 ></a-entity>
 
+<!-- todo controllerconnected event -->
+
 <a-entity
-  id="blockHand"
+  id="rightHand"
   hand-controls="hand: right"
-  laser-controls="objects=.slide__text,.action-button"
-  trigger-action="action: nextSlide; event: gripdown;"
+  laser-controls
+  bind__line="color: laserColor"
+  trigger-action__a-button="event: abuttondown; action: nextSlide;"
+  trigger-action__x-button="event: xbuttondown; action: prevSlide;"
+  trigger-action__pistol-start="event: gripdown; action: pointStart;"
+  trigger-action__pistol-end="event: gripup; action: pointEnd;"
   record-position="target: #speakerRight"
   bind__record-position="mirror: mirror"
 ></a-entity>
