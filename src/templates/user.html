@@ -12,6 +12,7 @@
   id="rightHand"
   hand-controls="hand: right"
   laser-controls
+  raycaster="objects: .action-button,.deck;"
   bind__line="color: laserColor"
   trigger-action__a-button="event: abuttondown; action: nextSlide;"
   trigger-action__x-button="event: xbuttondown; action: prevSlide;"
@@ -28,5 +29,5 @@
   record-position="target: #speakerHead"
   bind__record-position="mirror: mirror"
 >
-  <a-cursor></a-cursor>
+  <a-cursor raycaster="objects: .action-button"></a-cursor>
 </a-entity>

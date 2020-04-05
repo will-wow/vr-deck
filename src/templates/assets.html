@@ -11,15 +11,19 @@
   />
 
   <a-mixin
+    id="deck"
+    geometry="primitive: plane; height: 5; width: 20"
+    material="transparent: true; opacity: 0.1"
+  ></a-mixin>
+
+  <a-mixin
     id="slide__text"
     class="slide__text"
-    bind__highlight="highlighted: highlightedLine"
-    bind-toggle__highlight-able="talk.edit"
+    material="color: white"
   ></a-mixin>
 
   <a-mixin
     id="action-button"
-    class=".action-button"
     geometry="height: 0.25; width: 0.25; depth: 0.25"
   ></a-mixin>
 
@@ -27,4 +31,24 @@
     id="optimerBoldFont"
     src="https://rawgit.com/mrdoob/three.js/dev/examples/fonts/optimer_bold.typeface.json"
   ></a-asset-item>
+
+  <a-asset-item
+    id="avatar-default"
+    src="/assets/avatar-default/model.gltf"
+  ></a-asset-item>
+  <a-asset-item
+    id="avatar-default-mtl"
+    src="./assets/avatar-default/materials.mtl"
+  ></a-asset-item>
+  <a-asset-item
+    id="avatar-default-obj"
+    src="./assets/avatar-default/model.obj"
+  ></a-asset-item>
+
+  <a-asset-item
+    id="avatar-alien"
+    src="/assets/avatar-alien/model.gltf"
+  ></a-asset-item>
+
+  <a-asset-item id="lectern" src="/assets/lectern/model.gltf"></a-asset-item>
 </a-assets>

@@ -7,6 +7,7 @@ requireAll(require.context("./components/", true, /\.js$/));
 
 import "aframe-text-geometry-component";
 import "aframe-state-component";
+import "aframe-layout-component";
 
 import "./store/state.js";
 import "./scene.html";

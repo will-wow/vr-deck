@@ -1,18 +1,20 @@
-<a-entity rotation="0 180 0" position="1 0 -4">
-  <a-box
-    id="speakerHead"
-    color="yellow"
-    height="0.25"
-    width="0.25"
-    depth="0.25"
-  >
-    <a-sound
-      crossorigin="anonymous"
-      bind__src="audioUrl"
-      bind__voice-player="play: play"
-    ></a-sound>
-  </a-box>
+<a-entity id="speaker" rotation="0 180 0" position="1 0 -4">
+  <a-entity id="speakerHead">
+    <a-entity
+      rotation="0 -90 0"
+      geometry="primitive: box"
+      obj-model="obj: #avatar-default-obj; mtl: #avatar-default-mtl;"
+    >
+      <a-sound
+        crossorigin="anonymous"
+        bind__src="audioUrl"
+        bind__voice-player="play: play"
+      ></a-sound>
+    </a-entity>
+  </a-entity>
+
   <a-box id="speakerLeft" height="0.1" width="0.1" depth="0.1"></a-box>
+
   <a-box
     id="speakerRight"
     height="0.1"
@@ -20,6 +22,7 @@
     depth="0.1"
     bind-toggle__raycaster="pointing"
     bind__raycaster="showLine: pointing"
+    raycaster="objects: .deck"
     bind__line="color: laserColor"
   ></a-box>
 </a-entity>

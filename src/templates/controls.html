@@ -1,6 +1,7 @@
 <a-entity position="0 0.2 0">
   <a-box
     bind__visible="talk.edit"
+    class="action-button"
     mixin="action-button"
     position="-1 0 -2"
     bind__color-switch="on: mirror"
@@ -9,6 +10,7 @@
   ></a-box>
 
   <a-box
+    class="action-button"
     mixin="action-button"
     position="0 0 -2"
     bind__color-switch="on: play"
@@ -18,6 +20,7 @@
 
   <a-box
     bind__visible="talk.edit"
+    class="action-button"
     mixin="action-button"
     position="1 0 -2"
     bind__color-switch="on: record"
@@ -27,6 +30,7 @@
 
   <a-box
     bind__visible="talk.edit"
+    class="action-button"
     mixin="action-button"
     position="2 0 -2"
     color="black"
@@ -36,6 +40,7 @@
   <!-- Reset -->
   <a-box
     bind__visible="talk.edit && newRecording"
+    class="action-button"
     mixin="action-button"
     position="0 0 -1"
     color="purple"
@@ -45,6 +50,7 @@
   <!-- Upload -->
   <a-box
     bind__visible="talk.edit && newRecording"
+    class="action-button"
     mixin="action-button"
     position="1 0 -1"
     bind__color-switch="on: uploading"

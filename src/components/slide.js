@@ -35,16 +35,6 @@ AFRAME.registerComponent("slide", {
 
     slideElement.setAttribute("mixin", "slide__text");
 
-    slideElement.setAttribute("highlight-able", {
-      line: i
-    });
-
-    slideElement.setAttribute("highlight", {
-      line: i,
-      color: element.color || "white",
-      highlightColor: element.highlightColor || "red"
-    });
-
     const theme = getTalk().theme;
     const themeStyles = theme.styles[element.kind] || theme.styles.p;
     const fontSize = themeStyles.fontSize;
