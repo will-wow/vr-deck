@@ -12,7 +12,7 @@
   id="rightHand"
   hand-controls="hand: right"
   laser-controls
-  raycaster="objects: .action-button,.deck;"
+  raycaster="objects: .action-button:not(.hidden), .deck:not(.hidden);"
   bind__line="color: laserColor"
   trigger-action__a-button="event: abuttondown; action: nextSlide;"
   trigger-action__x-button="event: xbuttondown; action: prevSlide;"
@@ -24,10 +24,13 @@
 
 <a-entity
   camera
-  look-controls="pointerLockEnabled: true"
+  look-controls
   position="0 1.6 0"
   record-position="target: #speakerHead"
   bind__record-position="mirror: mirror"
 >
-  <a-cursor raycaster="objects: .action-button"></a-cursor>
+  <a-entity
+    cursor="rayOrigin: mouse"
+    raycaster="objects: .action-button:not(.hidden)"
+  ></a-entity>
 </a-entity>
