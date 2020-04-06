@@ -1,11 +1,13 @@
 import { getTalk } from "../store/talk";
 
+import { imageId } from "../lib/image";
+
 /**
  *
  */
 AFRAME.registerComponent("slide", {
   schema: {
-    show: { type: "int", default: 0 }
+    show: { type: "int", default: 0 },
   },
 
   init() {
@@ -30,7 +32,16 @@ AFRAME.registerComponent("slide", {
     }
   },
 
-  renderLine(element, i) {
+  renderLine(element) {
+    const slideElement =
+      element.kind === "img"
+        ? this.renderImage(element)
+        : this.renderText(element);
+
+    this.el.appendChild(slideElement);
+  },
+
+  renderText(element) {
     const slideElement = document.createElement("a-entity");
 
     slideElement.setAttribute("mixin", "slide__text");
@@ -42,13 +53,25 @@ AFRAME.registerComponent("slide", {
     slideElement.setAttribute("text-geometry", {
       value: element.content,
       font: "#optimerBoldFont",
-      size: fontSize
+      size: fontSize,
     });
 
     slideElement.setAttribute("position", `0 ${this.y} 0`);
 
-    this.el.appendChild(slideElement);
-
     this.y -= fontSize;
-  }
+
+    return slideElement;
+  },
+  renderImage(element) {
+    const slideElement = document.createElement("a-image");
+
+    slideElement.setAttribute("src", `#${imageId(element.image)}`);
+    slideElement.setAttribute("position", `2.5 ${this.y} 0`);
+    slideElement.setAttribute("height", 5);
+    slideElement.setAttribute("width", 5);
+
+    this.y -= 5;
+
+    return slideElement;
+  },
 });
